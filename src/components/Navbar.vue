@@ -55,6 +55,7 @@
 </template>
 
 <script lang="ts">
+import { createBlog } from '@/api/blog'
 import { routes } from '@/router'
 export default defineComponent({
   setup: () => {
