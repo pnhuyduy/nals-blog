@@ -1,12 +1,13 @@
 <template>
-  <header class="w-full fixed bg-gray-200 text-gray-600 body-font dark:bg-gray-800">
-    <div class="sticky container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+  <header class="bg-gray-200 text-gray-600 body-font dark:bg-gray-800">
+    <div class="container flex flex-col flex-wrap items-center py-3 mx-auto md:flex-row">
       <RouterLink
+        id="navbarHome"
         :to="{ name: 'main.home' }"
-        class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0"
+        class="flex items-center font-medium text-gray-900 title-font md:mb-0"
       >
         <img alt="Vite logo" src="@/assets/vite-logo.svg" width="36px" />
-        <span class="ml-3 text-xl dark:text-white">
+        <span class="ml-3 text-xl dark:text-white decoration-none">
           {{ appName }}
         </span>
       </RouterLink>
@@ -57,3 +58,12 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss">
+#navbarHome {
+  text-decoration: none;
+  &:hover {
+    color: #0098d1;
+  }
+}
+</style>

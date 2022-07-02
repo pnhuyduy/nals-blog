@@ -4,13 +4,13 @@ interface Pagination {
   offset: number
   total: number
   prev?: any
-  next: number
+  next?: any
 }
 
 interface Image {
   url: string
 }
-interface Blog {
+export interface Blog {
   id: number
   title: string
   content: string

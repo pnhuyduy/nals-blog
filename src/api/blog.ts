@@ -1,7 +1,7 @@
 import { getFormData } from './helpers'
 import axios from '@/libs/axios'
 
-interface QueryBlogParams {
+export interface QueryBlogParams {
   page?: number
   offset?: number
   search?: string
@@ -11,7 +11,7 @@ interface QueryBlogParams {
 
 interface BlogListResponse {
   data: {
-    items: Blog
+    items: Blog[]
   }
   pagination: Pagination
 }
