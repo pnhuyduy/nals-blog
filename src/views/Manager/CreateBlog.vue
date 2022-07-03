@@ -49,7 +49,7 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { BButton, BForm, BFormFile, BFormGroup, BFormInput, BFormTextarea, BSpinner } from 'bootstrap-vue'
 import useBlogStore from '@/stores/blog'
-import type { BlogPayload } from '@/api/blog'
+import { useBlogEditor } from '@/composables/useBlog'
 
 export default defineComponent({
   name: 'CreateBlog',
@@ -66,23 +66,7 @@ export default defineComponent({
   },
   setup: (props, { root: { $bvToast, $router } }) => {
     const blogStore = useBlogStore()
-    const submitting = ref(false)
-    const state = reactive<BlogPayload>({
-      title: '',
-      content: '',
-      image: null,
-    })
-    const previewImage = ref('')
-
-    const onFileChange = e => {
-      const file = e.target.files[0]
-      previewImage.value = URL.createObjectURL(file)
-    }
-
-    const removeImage = () => {
-      state.image = null
-      previewImage.value = ''
-    }
+    const { submitting, state, previewImage, removeImage, onFileChange } = useBlogEditor()
 
     const onSubmit = async () => {
       const { title, content, image } = state

@@ -1,5 +1,5 @@
 import { storeToRefs } from 'pinia'
-import type { QueryBlogParams } from '@/api/blog'
+import type { BlogPayload, QueryBlogParams } from '@/api/blog'
 import type { SearchTerm } from '@/types'
 import useBlogStore from '@/stores/blog'
 
@@ -69,5 +69,53 @@ export default () => {
 
     deleteBlog,
     onSearch,
+  }
+}
+
+export const useBlogEditor = () => {
+  const vm = getCurrentInstance().proxy
+  const $router = vm.$router
+  const blogStore = useBlogStore()
+  const submitting = ref(false)
+  const state = reactive<BlogPayload>({
+    id: null,
+    title: '',
+    content: '',
+    image: null,
+  })
+  const previewImage = ref('')
+
+  const getBlogById = async (id: number | string) => {
+    try {
+      const response = await blogStore.getBlogById(id)
+      const { id: blogId, title, content, image } = response.data.data
+
+      state.id = blogId
+      state.title = title
+      state.content = content
+
+      previewImage.value = image.url
+    } catch (error) {
+      $router.push('/manager')
+    }
+  }
+
+  const removeImage = () => {
+    state.image = null
+    previewImage.value = ''
+  }
+
+  const onFileChange = e => {
+    const file = e.target.files[0]
+    previewImage.value = URL.createObjectURL(file)
+  }
+
+  return {
+    submitting,
+    state,
+    previewImage,
+    removeImage,
+    onFileChange,
+    getBlogById,
   }
 }

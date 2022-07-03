@@ -1,5 +1,5 @@
 <template>
-  <b-card class="flex flex-col cursor-pointer blog__card">
+  <b-card class="flex flex-col cursor-pointer blog__card" @click="onClickBlogCard">
     <b-card-text>
       <b-media>
         <template #aside>
@@ -48,6 +48,10 @@ export default defineComponent({
     }
   },
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -69,8 +73,19 @@ export default defineComponent({
       type: String,
     },
   },
-  setup() {
-    return {}
+  setup(props, { root: { $router } }) {
+    const onClickBlogCard = () => {
+      $router.push({
+        name: 'main.blog',
+        params: {
+          id: props.id,
+        },
+      })
+    }
+
+    return {
+      onClickBlogCard
+    }
   },
 })
 </script>

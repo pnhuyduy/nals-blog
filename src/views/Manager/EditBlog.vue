@@ -51,8 +51,7 @@
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { BButton, BForm, BFormFile, BFormGroup, BFormInput, BFormTextarea, BSpinner } from 'bootstrap-vue'
 import useBlogStore from '@/stores/blog'
-import type { BlogPayload } from '@/api/blog'
-
+import { useBlogEditor } from '@/composables/useBlog'
 export default defineComponent({
   name: 'EditBlog',
   components: {
@@ -68,39 +67,7 @@ export default defineComponent({
   },
   setup: (props, { root: { $bvToast, $route, $router } }) => {
     const blogStore = useBlogStore()
-    const submitting = ref(false)
-    const state = reactive<BlogPayload>({
-      id: null,
-      title: '',
-      content: '',
-      image: null,
-    })
-    const previewImage = ref('')
-
-    const getBlogById = async (id: number | string) => {
-      try {
-        const response = await blogStore.getBlogById(id)
-        const { id: blogId, title, content, image } = response.data.data
-
-        state.id = blogId
-        state.title = title
-        state.content = content
-
-        previewImage.value = image.url
-      } catch (error) {
-        $router.push('/manager')
-      }
-    }
-
-    const removeImage = () => {
-      state.image = null
-      previewImage.value = ''
-    }
-
-    const onFileChange = e => {
-      const file = e.target.files[0]
-      previewImage.value = URL.createObjectURL(file)
-    }
+    const { submitting, state, previewImage, getBlogById, removeImage, onFileChange } = useBlogEditor()
 
     const onSubmit = async () => {
       const { id, title, content, image } = state

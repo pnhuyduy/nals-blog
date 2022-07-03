@@ -2,6 +2,7 @@
   <div class="flex flex-wrap -m-2">
     <div v-for="(blog, index) in items" :key="index" class="w-full p-2 md:w-1/2 lg:w-1/3">
       <BlogCard
+        :id="blog.id"
         :title="blog.title"
         :content="blog.content"
         :image="blog.image.url"
