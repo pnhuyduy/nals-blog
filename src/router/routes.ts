@@ -16,6 +16,11 @@ const routes: RouteConfig[] = [
         name: 'main.blog',
         component: () => import('@/views/Blog/Blog.vue'),
       },
+      {
+        path: '/manager',
+        name: 'manager.blog',
+        component: () => import('@/views/Manager/Blog.vue'),
+      },
     ],
   },
   {

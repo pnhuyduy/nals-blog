@@ -1,12 +1,16 @@
 import { getFormData } from './helpers'
 import axios from '@/libs/axios'
+import type { Blog, Pagination } from '@/types'
+
+export type SortBy = 'id' | 'title' | 'content' | 'created_at' | 'updated_at'
+export type SortDirection = 'asc' | 'desc'
 
 export interface QueryBlogParams {
   page?: number
   offset?: number
   search?: string
-  sort_by?: 'id' | 'title' | 'content' | 'created_at' | 'updated_at'
-  sort_direction?: 'asc' | 'desc'
+  sort_by?: SortBy
+  sort_direction?: SortDirection
 }
 
 interface BlogListResponse {

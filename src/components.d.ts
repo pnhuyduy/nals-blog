@@ -5,9 +5,11 @@
 declare module 'vue' {
   export interface GlobalComponents {
     Feature: typeof import('./components/Feature.vue')['default']
+    MdiDelete: typeof import('~icons/mdi/delete')['default']
     MdiGithub: typeof import('~icons/mdi/github')['default']
     MdiMessageOutline: typeof import('~icons/mdi/message-outline')['default']
     MdiMoonWaningCrescent: typeof import('~icons/mdi/moon-waning-crescent')['default']
+    MdiPencil: typeof import('~icons/mdi/pencil')['default']
     MdiWhiteBalanceSunny: typeof import('~icons/mdi/white-balance-sunny')['default']
     Navbar: typeof import('./components/Navbar.vue')['default']
   }

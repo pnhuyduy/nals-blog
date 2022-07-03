@@ -1,62 +1,42 @@
 <template>
-  <section class="container mx-auto">
+  <section class="container flex flex-col gap-5 mx-auto">
+    <BlogSortAndSearch @search="onSearch" />
     <BlogCardListSkeleton v-if="isLoading" />
     <BlogCardList v-else :items="blogs" />
-    <div class="mt-3">
-      <b-pagination
-        v-model="pagination.page"
-        align="center"
-        :limit="10"
-        :total-rows="pagination.count"
-        :per-page="pagination.offset"
-        aria-controls="my-table"
-      ></b-pagination>
-    </div>
+    <b-pagination
+      v-model="pagination.page"
+      align="center"
+      :limit="10"
+      :total-rows="pagination.count"
+      :per-page="pagination.offset"
+      aria-controls="my-table"
+    ></b-pagination>
   </section>
 </template>
 
 <script lang="ts">
-import { storeToRefs } from 'pinia'
 import { BPagination } from 'bootstrap-vue'
 import BlogCardList from './Blog/BlogCardList.vue'
 import BlogCardListSkeleton from './Blog/BlogCardListSkeleton.vue'
-import useBlogStore from '@/stores/blog'
+import BlogSortAndSearch from './Blog/BlogSortAndSearch.vue'
+import useBlog from '@/composables/useBlog'
+
 export default defineComponent({
   components: {
     BlogCardList,
     BlogCardListSkeleton,
+    BlogSortAndSearch,
     BPagination,
   },
   setup: () => {
-    const blogStore = useBlogStore()
-    const { list: blogs, pagination } = storeToRefs(blogStore)
-    const isLoading = ref(false)
-
-    const loadBlogs = async () => {
-      try {
-        isLoading.value = true
-        await blogStore.getBlogs(pagination.value)
-      } catch (error) {
-      } finally {
-        isLoading.value = false
-      }
-    }
-
-    watch(
-      () => pagination.value.page,
-      async () => {
-        await loadBlogs()
-      }
-    )
-
-    onMounted(async () => {
-      await loadBlogs()
-    })
+    const { blogs, pagination, isLoading, onSearch } = useBlog()
 
     return {
       isLoading,
       blogs,
       pagination,
+
+      onSearch,
     }
   },
 })

@@ -7,11 +7,17 @@
         src="@/assets/not-found.svg"
       />
       <div class="w-full text-center lg:w-2/3">
-        <h1 class="text-red-500 dark:text-red-500">404 NOT FOUND</h1>
-        <p class="mb-8 leading-relaxed dark:text-gray-300">Oops, looks like you got kidnapped by aliens.</p>
+        <h1 class="text-red-500 dark:text-red-500">
+          404 NOT FOUND
+        </h1>
+        <p class="mb-8 leading-relaxed dark:text-gray-300">
+          Oops, looks like you got kidnapped by aliens.
+        </p>
         <div class="flex justify-center">
           <RouterLink :to="{ name: 'main.home' }">
-            <b-button variant="success"> Bring me back Home </b-button>
+            <b-button variant="success">
+              Bring me back Home
+            </b-button>
           </RouterLink>
         </div>
       </div>

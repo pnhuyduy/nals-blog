@@ -27,3 +27,9 @@ interface User {
   created_at: string
   email: string
 }
+
+export interface SearchTerm {
+  search: string
+  sort_by: SortBy
+  sort_direction: SortDirection
+}

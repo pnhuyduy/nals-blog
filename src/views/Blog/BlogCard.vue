@@ -1,46 +1,51 @@
 <template>
-  <b-card class="flex flex-col cursor-pointer">
-    <b-media>
-      <template #aside>
-        <div class="flex flex-col">
-          <b-img-lazy blank-color="#ccc" width="64" alt="placeholder" :src="image">
-            </b-img>
-            <div v-if="commentsCount" class="text-muted">
-              <mdiMessageOutline class="mr-1" /><span>{{ commentsCount }}</span>
-            </div>
-          </b-img-lazy>
+  <b-card class="flex flex-col cursor-pointer blog__card">
+    <b-card-text>
+      <b-media>
+        <template #aside>
+          <div class="flex flex-col">
+            <b-img-lazy blank-color="#ccc" width="64" alt="placeholder" :src="image">
+              </b-img>
+              <div v-if="commentsCount" class="text-muted">
+                <mdiMessageOutline class="mr-1" /><span>{{ commentsCount }}</span>
+              </div>
+            </b-img-lazy>
+          </div>
+        </template>
+
+        <b-link class="blog__title mt-0 h4">
+          {{ title }}
+        </b-link>
+        <div class="text-muted">
+          {{ content | truncate(10) }}
         </div>
-      </template>
-
-      <b-link class="blog__title mt-0 h4">
-        {{ title }}
-      </b-link>
-      <div class="text-muted">
-        {{ content | truncate(30) }}
-      </div>
-
-      <b-button class="mt-2" variant="primary" size="sm">
-        Đọc thêm
-      </b-button>
-    </b-media>
+      </b-media>
+    </b-card-text>
+    <template #footer>
+      <span class="text-success float-right">{{ createdAt | readableDate() }}</span>
+    </template>
   </b-card>
 </template>
 
 <script>
-import { BButton, BCard, BImgLazy, BLink, BMedia } from 'bootstrap-vue'
+import { BCard, BCardText, BImgLazy, BLink, BMedia } from 'bootstrap-vue'
+import dayjs from '@/libs/day'
 export default {
   name: 'BlogCard',
   components: {
     BCard,
     BMedia,
     BImgLazy,
-    BButton,
     BLink,
+    BCardText
   },
   filters: {
     truncate(string, value) {
       return `${string.split(' ').splice(0, value).join(' ')}...`
     },
+    readableDate(value) {
+      return dayjs(value).format('DD/MM/YYYY HH:MM')
+    }
   },
   props: {
     title: {
@@ -60,6 +65,9 @@ export default {
       required: false,
       default: 0,
     },
+    createdAt: {
+      type: String,
+    },
   },
   setup() {
     return {}
@@ -68,6 +76,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.blog__card {
+  height: 200px;
+}
 .blog__title {
   color: black;
   text-decoration: none;

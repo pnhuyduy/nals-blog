@@ -11,10 +11,14 @@
           {{ appName }}
         </span>
       </RouterLink>
+
       <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+        <b-button variant="primary" size="sm" @click="$router.push({ name: 'manager.blog' }).catch(() => {})">
+          Create Blog
+        </b-button>
         <a
           aria-label="Github"
-          href="https://github.com/lstoeferle/vite-vue2-windicss-starter"
+          href="https://github.com/pnhuyduy/nals-blog"
           target="_blank"
           class="flex items-center justify-center mr-2 text-black w-9 h-9 dark:text-white"
         >
@@ -34,8 +38,12 @@
 </template>
 
 <script lang="ts">
+import { BButton } from 'bootstrap-vue'
 import routes from '@/router/routes'
 export default defineComponent({
+  components: {
+    BButton,
+  },
   setup: () => {
     // Import config from .env
     const appName = import.meta.env.VITE_APP_NAME

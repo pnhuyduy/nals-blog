@@ -1,5 +1,5 @@
 <template>
-  <b-card class="flex flex-col cursor-pointer">
+  <b-card class="flex flex-col cursor-pointer blog__card">
     <b-media>
       <template #aside>
         <div class="flex flex-col">
@@ -11,8 +11,6 @@
       <b-skeleton width="100%"></b-skeleton>
       <b-skeleton width="100%"></b-skeleton>
       <b-skeleton width="85%"></b-skeleton>
-
-      <b-skeleton class="mt-2" type="button" size="sm"></b-skeleton>
     </b-media>
   </b-card>
 </template>
@@ -31,6 +29,9 @@ export default {
 </script>
 
 <style lang="scss">
+.blog__card {
+  height: 200px;
+}
 .skeleton__img {
   width: 64px;
   height: 64px;

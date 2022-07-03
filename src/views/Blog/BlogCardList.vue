@@ -6,6 +6,7 @@
         :content="blog.content"
         :image="blog.image.url"
         :comments-count="blog.comments_count"
+        :created-at="blog.created_at"
       />
     </div>
   </div>
