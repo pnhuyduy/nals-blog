@@ -1,63 +1,41 @@
 <template>
-  <header class="text-gray-600 body-font dark:bg-gray-800">
-    <div
-      class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row"
-    >
+  <header class="bg-gray-200 text-gray-600 body-font dark:bg-gray-800">
+    <div class="container flex flex-col flex-wrap items-center py-3 mx-auto md:flex-row">
       <RouterLink
-        :to="{ name: 'Home' }"
-        class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0"
+        id="navbarHome"
+        :to="{ name: 'main.home' }"
+        class="flex items-center font-medium text-gray-900 title-font md:mb-0"
       >
         <img alt="Vite logo" src="@/assets/vite-logo.svg" width="36px" />
-        <span class="ml-3 text-xl dark:text-white">
+        <span class="ml-3 text-xl dark:text-white decoration-none">
           {{ appName }}
         </span>
       </RouterLink>
-      <nav
-        class="flex flex-wrap items-center justify-center text-base md:ml-auto"
-      >
-        <RouterLink
-          v-for="(route, index) in availableRoutes"
-          :key="index"
-          class="mr-5 font-semibold cursor-pointer"
-          :class="{
-            'text-green-500 hover:green-500 dark:text-green-500 dark:hover:text-green-500 underline':
-              route.name === currentRoute.name,
-            'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200':
-              route.name !== currentRoute.name,
-          }"
-          :to="{ name: route.name }"
-        >
-          {{ route.name }}
-        </RouterLink>
-        <RouterLink
-          class="flex items-center justify-center mr-2 text-black w-9 h-9 dark:text-white"
-          to="/aliens"
-        >
-          <MdiAlien />
-        </RouterLink>
+
+      <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+        <b-button variant="primary" size="sm" @click="$router.push({ name: 'manager.blog' }).catch(() => {})">
+          Create Blog
+        </b-button>
         <a
-          href="https://github.com/lstoeferle/vite-vue2-windicss-starter"
+          aria-label="Github"
+          href="https://github.com/pnhuyduy/nals-blog"
           target="_blank"
           class="flex items-center justify-center mr-2 text-black w-9 h-9 dark:text-white"
         >
           <MdiGithub />
         </a>
-        <button
-          class="flex items-center justify-center w-9 h-9 focus:outline-none"
-          @click="toggle()"
-        >
-          <MdiWhiteBalanceSunny v-if="isDark" class="text-yellow-500" />
-          <MdiMoonWaningCrescent v-else class="text-gray-800" />
-        </button>
       </nav>
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import { createBlog } from '@/api/blog'
-import { routes } from '@/router'
+import { BButton } from 'bootstrap-vue'
+import routes from '@/router/routes'
 export default defineComponent({
+  components: {
+    BButton,
+  },
   setup: () => {
     // Import config from .env
     const appName = import.meta.env.VITE_APP_NAME
@@ -65,18 +43,20 @@ export default defineComponent({
     const availableRoutes = routes.filter(route => route.name !== 'NotFound')
     const currentRoute = computed(() => getCurrentInstance()?.proxy?.$route)
 
-    const isDark = useDark()
-    const toggle = useToggle(isDark)
-
     return {
       appName,
       availableRoutes,
       currentRoute,
-
-      // Darkmode
-      isDark,
-      toggle,
     }
   },
 })
 </script>
+
+<style lang="scss">
+#navbarHome {
+  text-decoration: none;
+  &:hover {
+    color: #0098d1;
+  }
+}
+</style>

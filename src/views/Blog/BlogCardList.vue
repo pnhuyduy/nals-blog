@@ -15,6 +15,7 @@
 <script lang="ts">
 import BlogCard from './BlogCard.vue'
 export default defineComponent({
+  name: 'BlogCardList',
   components: {
     BlogCard,
   },

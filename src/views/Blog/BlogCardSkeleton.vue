@@ -17,15 +17,15 @@
 
 <script>
 import { BCard, BMedia, BSkeleton, BSkeletonImg } from 'bootstrap-vue'
-export default {
-  name: 'BlogCard',
+export default defineComponent({
+  name: 'BlogCardSkeleton',
   components: {
     BSkeleton,
     BSkeletonImg,
     BCard,
     BMedia,
   },
-}
+})
 </script>
 
 <style lang="scss">

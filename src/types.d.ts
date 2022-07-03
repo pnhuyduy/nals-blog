@@ -1,3 +1,5 @@
+export type Nullable<T> = T | null
+
 interface Pagination {
   count: number
   page: number
@@ -11,7 +13,7 @@ interface Image {
   url: string
 }
 export interface Blog {
-  id: number
+  id: Nullable<number>
   title: string
   content: string
   image: Image

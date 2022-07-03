@@ -30,7 +30,7 @@
 <script>
 import { BCard, BCardText, BImgLazy, BLink, BMedia } from 'bootstrap-vue'
 import dayjs from '@/libs/day'
-export default {
+export default defineComponent({
   name: 'BlogCard',
   components: {
     BCard,
@@ -72,7 +72,7 @@ export default {
   setup() {
     return {}
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

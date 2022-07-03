@@ -1,11 +1,17 @@
 import { defineStore } from 'pinia'
-import type { QueryBlogParams } from '@/api/blog'
+import type { BlogPayload, QueryBlogParams } from '@/api/blog'
 import * as blogAPI from '@/api/blog'
-import type { Blog, Pagination } from '@/types'
+
+import type { Blog, Nullable, Pagination } from '@/types'
 
 interface State {
   list: Blog[]
   pagination: Pagination
+  editBlog: {
+    title: string
+    content: string
+    image: Nullable<string>
+  }
 }
 
 export default defineStore('useBlog', {
@@ -20,6 +26,11 @@ export default defineStore('useBlog', {
         next: null,
         prev: null,
       },
+      editBlog: {
+        title: '',
+        content: '',
+        image: '',
+      },
     }
   },
   actions: {
@@ -31,6 +42,15 @@ export default defineStore('useBlog', {
         state.list = data.items
         state.pagination = pagination
       })
+    },
+    async getBlogById(id: number) {
+      return await blogAPI.getBlogById(id)
+    },
+    async createBlog(blog: BlogPayload) {
+      return await blogAPI.createBlog(blog)
+    },
+    async updateBlog(id: number, blog: BlogPayload) {
+      return await blogAPI.updateBlog(id, blog)
     },
     async deleteBlog(id: number) {
       try {

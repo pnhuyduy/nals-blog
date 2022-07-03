@@ -7,16 +7,15 @@
           {{ option.label }}
         </b-dropdown-item>
       </b-dropdown>
-      <b-button size="sm" text="Button" variant="primary" @click="onSubmit">
-        Search
-      </b-button>
+      <b-button size="sm" text="Button" variant="primary" @click="onSubmit"> Search </b-button>
     </b-input-group-append>
   </b-input-group>
 </template>
 
 <script lang="ts">
 import { BButton, BDropdown, BDropdownItem, BFormInput, BInputGroup, BInputGroupAppend } from 'bootstrap-vue'
-export default {
+export default defineComponent({
+  name: 'BlogSortAndSearch',
   components: {
     BButton,
     BFormInput,
@@ -76,7 +75,7 @@ export default {
       onSubmit,
     }
   },
-}
+})
 </script>
 
 <style lang="scss" scoped></style>

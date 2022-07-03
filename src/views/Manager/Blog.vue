@@ -1,9 +1,7 @@
 <template>
-  <section class="container flex flex-col gap-5 mx-auto">
+  <div class="flex flex-col gap-5">
     <div class="flex">
-      <b-button variant="primary">
-        Create Blog
-      </b-button>
+      <b-button variant="primary" @click="$router.push('/manager/new')"> Tạo mới </b-button>
     </div>
     <BlogSortAndSearch @search="onSearch" />
     <b-overlay :show="isLoading" rounded="sm">
@@ -14,7 +12,7 @@
 
         <template #cell(actions)="data">
           <div class="flex flex-row gap-3">
-            <b-button variant="info" size="sm">
+            <b-button variant="info" size="sm" @click="editBlog(data.item.id)">
               <MdiPencil />
             </b-button>
             <b-button variant="outline-danger" size="sm" @click="showDeleteBlogConfirm(data.item)">
@@ -32,7 +30,7 @@
       :per-page="pagination.offset"
       aria-controls="my-table"
     ></b-pagination>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -42,7 +40,8 @@ import dayjs from '@/libs/day'
 import useBlog from '@/composables/useBlog'
 import type { Blog } from '@/types'
 
-export default {
+export default defineComponent({
+  name: 'BlogManager',
   components: {
     BButton,
     BTable,
@@ -51,7 +50,7 @@ export default {
     BOverlay,
     BImg,
   },
-  setup(props, { root: { $bvModal } }) {
+  setup(props, { root: { $bvModal, $router } }) {
     const fields = [
       'id',
       {
@@ -80,6 +79,15 @@ export default {
     ]
     const { blogs, pagination, isLoading, onSearch, deleteBlog } = useBlog()
 
+    const editBlog = (id: number) => {
+      $router.push({
+        name: 'manager.blog.edit',
+        params: {
+          id,
+        },
+      })
+    }
+
     const showDeleteBlogConfirm = (blog: Blog) => {
       const { title, id } = blog
       $bvModal
@@ -106,10 +114,11 @@ export default {
       pagination,
 
       onSearch,
+      editBlog,
       showDeleteBlogConfirm,
     }
   },
-}
+})
 </script>
 
 <style lang="scss" scoped></style>

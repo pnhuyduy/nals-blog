@@ -10,16 +10,41 @@ const routes: RouteConfig[] = [
         path: '/',
         name: 'main.home',
         component: () => import('@/views/Home.vue'),
+        meta: {
+          title: 'Trang chủ',
+        },
       },
       {
         path: '/blog/:id',
         name: 'main.blog',
         component: () => import('@/views/Blog/Blog.vue'),
+        meta: {
+          title: 'Blog',
+        },
       },
       {
         path: '/manager',
         name: 'manager.blog',
         component: () => import('@/views/Manager/Blog.vue'),
+        meta: {
+          title: 'Quản lý',
+        },
+      },
+      {
+        path: '/manager/new',
+        name: 'manager.blog.create',
+        component: () => import('@/views/Manager/CreateBlog.vue'),
+        meta: {
+          title: 'Tạo mới blog',
+        },
+      },
+      {
+        path: '/manager/edit/:id',
+        name: 'manager.blog.edit',
+        component: () => import('@/views/Manager/EditBlog.vue'),
+        meta: {
+          title: 'Sửa blog',
+        },
       },
     ],
   },

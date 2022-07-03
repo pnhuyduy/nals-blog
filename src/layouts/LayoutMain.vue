@@ -1,8 +1,20 @@
 <template>
   <div>
-    <Navbar />
+    <NavBar />
     <main class="py-10">
-      <RouterView />
+      <section class="container mx-auto">
+        <RouterView />
+      </section>
     </main>
   </div>
 </template>
+
+<script lang="ts">
+import NavBar from './components/Navbar.vue'
+
+export default defineComponent({
+  components: {
+    NavBar,
+  },
+})
+</script>

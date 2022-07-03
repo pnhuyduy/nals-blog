@@ -8,5 +8,6 @@ module.exports = {
     'space-before-function-paren': 0,
     '@typescript-eslint/comma-dangle': 0,
     '@typescript-eslint/brace-style': 0,
+    'vue/no-deprecated-dollar-listeners-api': 0,
   },
 }

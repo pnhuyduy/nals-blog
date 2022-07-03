@@ -1,5 +1,5 @@
 <template>
-  <section class="container flex flex-col gap-5 mx-auto">
+  <div class="flex flex-col gap-5">
     <BlogSortAndSearch @search="onSearch" />
     <BlogCardListSkeleton v-if="isLoading" />
     <BlogCardList v-else :items="blogs" />
@@ -11,7 +11,7 @@
       :per-page="pagination.offset"
       aria-controls="my-table"
     ></b-pagination>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">

@@ -9,6 +9,7 @@
 <script lang="ts">
 import BlogCardSkeleton from './BlogCardSkeleton.vue'
 export default defineComponent({
+  name: 'BlogCardListSkeleton',
   components: {
     BlogCardSkeleton,
   },
