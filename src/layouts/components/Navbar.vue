@@ -14,7 +14,7 @@
 
       <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
         <b-button variant="primary" size="sm" @click="$router.push({ name: 'manager.blog' }).catch(() => {})">
-          Create Blog
+          Quản lý Blog
         </b-button>
         <a
           aria-label="Github"
