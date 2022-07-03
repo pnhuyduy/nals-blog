@@ -4,7 +4,7 @@
       <b-media>
         <template #aside>
           <div class="flex flex-col">
-            <b-img-lazy blank-color="#ccc" width="64" alt="placeholder" :src="image"> </b-img-lazy>
+            <b-img-lazy blank-color="#ccc" height="64" width="64" alt="placeholder" :src="image" />
             <div v-if="commentsCount" class="text-muted">
               <mdiMessageOutline class="mr-1" /><span>{{ commentsCount }}</span>
             </div>

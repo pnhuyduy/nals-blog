@@ -49,9 +49,12 @@ const routes: RouteConfig[] = [
     ],
   },
   {
-    path: '/:path(.*)',
+    path: '*',
     name: 'NotFound',
     component: NotFound,
+    meta: {
+      title: 'Không tìm thấy',
+    },
   },
 ]
 

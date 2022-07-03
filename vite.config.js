@@ -18,6 +18,15 @@ const config = defineConfig({
 
   build: {
     minify: true,
+    target: 'esnext',
+    chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) return id.toString().split('node_modules/')[1].split('/')[0].toString()
+        },
+      },
+    },
   },
 
   plugins: [
@@ -69,7 +78,7 @@ const config = defineConfig({
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api-placeholder\.herokuapp\.com\/.*/i,
-            handler: 'CacheFirst',
+            handler: 'NetworkFirst',
             options: {
               cacheName: 'api-cache',
               expiration: {
@@ -97,7 +106,7 @@ const config = defineConfig({
           },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-            handler: 'StaleWhileRevalidate',
+            handler: 'CacheFirst',
             options: {
               cacheName: 'gstatic-fonts-cache',
               expiration: {

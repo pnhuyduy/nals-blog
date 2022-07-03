@@ -3,7 +3,7 @@
     <b-media>
       <template #aside>
         <div class="flex flex-col">
-          <b-skeleton-img width="64" class="skeleton__img"></b-skeleton-img>
+          <b-skeleton-img height="64" width="64" class="skeleton__img"></b-skeleton-img>
         </div>
       </template>
 
