@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "postinstall": "husky install",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
