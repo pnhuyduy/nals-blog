@@ -97,7 +97,7 @@ const config = defineConfig({
           },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-            handler: 'CacheFirst',
+            handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'gstatic-fonts-cache',
               expiration: {
