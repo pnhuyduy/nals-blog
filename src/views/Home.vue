@@ -2,14 +2,14 @@
   <div class="flex flex-col gap-5">
     <BlogSortAndSearch @search="onSearch" />
     <BlogCardListSkeleton v-if="isLoading" />
-    <BlogCardList v-else :items="blogs" />
+    <BlogCardList id="my-blog-list" v-else :items="blogs" />
     <b-pagination
       v-model="pagination.page"
       align="center"
       :limit="10"
       :total-rows="pagination.count"
       :per-page="pagination.offset"
-      aria-controls="my-table"
+      aria-controls="my-blog-list"
     ></b-pagination>
   </div>
 </template>

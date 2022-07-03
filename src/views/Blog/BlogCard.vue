@@ -4,12 +4,10 @@
       <b-media>
         <template #aside>
           <div class="flex flex-col">
-            <b-img-lazy blank-color="#ccc" width="64" alt="placeholder" :src="image">
-              </b-img>
-              <div v-if="commentsCount" class="text-muted">
-                <mdiMessageOutline class="mr-1" /><span>{{ commentsCount }}</span>
-              </div>
-            </b-img-lazy>
+            <b-img-lazy blank-color="#ccc" width="64" alt="placeholder" :src="image"> </b-img-lazy>
+            <div v-if="commentsCount" class="text-muted">
+              <mdiMessageOutline class="mr-1" /><span>{{ commentsCount }}</span>
+            </div>
           </div>
         </template>
 
@@ -37,7 +35,7 @@ export default defineComponent({
     BMedia,
     BImgLazy,
     BLink,
-    BCardText
+    BCardText,
   },
   filters: {
     truncate(string, value) {
@@ -45,7 +43,7 @@ export default defineComponent({
     },
     readableDate(value) {
       return dayjs(value).format('DD/MM/YYYY HH:MM')
-    }
+    },
   },
   props: {
     id: {
@@ -84,14 +82,13 @@ export default defineComponent({
     }
 
     return {
-      onClickBlogCard
+      onClickBlogCard,
     }
   },
 })
 </script>
 
 <style lang="scss" scoped>
-
 .blog__card {
   height: 200px;
 }

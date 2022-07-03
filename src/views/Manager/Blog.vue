@@ -5,9 +5,9 @@
     </div>
     <BlogSortAndSearch @search="onSearch" />
     <b-overlay :show="isLoading" rounded="sm">
-      <b-table responsive bordered striped :fields="fields" :items="blogs">
+      <b-table id="my-blog-table" responsive bordered striped :fields="fields" :items="blogs">
         <template #cell(image)="data">
-          <b-img thumbnail :src="data.item.image.url" :alt="data.item.title" height="64" width="64"></b-img>
+          <b-img-lazy thumbnail :src="data.item.image.url" :alt="data.item.title" height="64" width="64"></b-img-lazy>
         </template>
 
         <template #cell(actions)="data">
@@ -28,13 +28,13 @@
       :limit="10"
       :total-rows="pagination.count"
       :per-page="pagination.offset"
-      aria-controls="my-table"
+      aria-controls="my-blog-table"
     ></b-pagination>
   </div>
 </template>
 
 <script lang="ts">
-import { BButton, BImg, BOverlay, BPagination, BTable } from 'bootstrap-vue'
+import { BButton, BImgLazy, BOverlay, BPagination, BTable } from 'bootstrap-vue'
 import BlogSortAndSearch from '@/views/Blog/BlogSortAndSearch.vue'
 import dayjs from '@/libs/day'
 import useBlog from '@/composables/useBlog'
@@ -48,7 +48,7 @@ export default defineComponent({
     BPagination,
     BlogSortAndSearch,
     BOverlay,
-    BImg,
+    BImgLazy,
   },
   setup(props, { root: { $bvModal, $router } }) {
     const fields = [
